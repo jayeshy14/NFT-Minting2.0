@@ -39,7 +39,7 @@ function App() {
         const address = await signer.getAddress();
         setAccount(address);
         setLoading(false)
-        let marketplaceAddress = "0x6ACabcaAa096Df132c2aF5F06D9008C1C49Ea7cA";
+        let marketplaceAddress = "0xfA3d1A6290DeaC3c6241608AE4cB331074f3C463";
        
         const marketplacecontract = new Contract(
           marketplaceAddress,
@@ -48,7 +48,7 @@ function App() {
         );
 
        
-
+        console.log(marketplacecontract);
         setMarketplace(marketplacecontract);
      
        
@@ -86,4 +86,5 @@ export default App;
 
 
 //kiichain: 0x482035207606Dccd3C12074869B86152d4867f93
-//sepolia: 0x6ACabcaAa096Df132c2aF5F06D9008C1C49Ea7cA
+//arbitrum-sepolia: 0x6ACabcaAa096Df132c2aF5F06D9008C1C49Ea7cA
+//sepolia: 0xfA3d1A6290DeaC3c6241608AE4cB331074f3C463

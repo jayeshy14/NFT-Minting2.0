@@ -12,7 +12,6 @@ function NFTs({ marketplace, setNFTitem}) {
   const loadMarketplaceItems = async () => {
    
     const itemCount = await marketplace.itemCount()
-    console.log(itemCount);
     let items = []
     for (let i = 1; i <= itemCount; i++) {
       const item = await marketplace.items(i)
@@ -20,7 +19,6 @@ function NFTs({ marketplace, setNFTitem}) {
       if (!item.sold) {
        
         const uri = await marketplace.tokenURI(item.tokenId)
-        console.log(uri);
         
         const response = await fetch(uri)
         const metadata = await response.json()
@@ -61,7 +59,7 @@ function NFTs({ marketplace, setNFTitem}) {
 
   useEffect(() => {
     loadMarketplaceItems()
-  }, )
+  },[] )
 
   if (loading) return (
     <main style={{ padding: "1rem 0" }}>
