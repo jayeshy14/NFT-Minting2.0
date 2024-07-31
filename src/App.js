@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ToastContainer} from 'react-toastify';
 import Home from './components/Home';
 import NFTs from './components/NFTs';
-import {marketplace_abi} from "./Abi.js"
+import {marketplace_abi} from "./ABI/Abi.js"
 import Create from './components/Create';
 import { useEffect, useState } from 'react';
 import { ethers, Contract} from 'ethers';
@@ -39,7 +39,7 @@ function App() {
         const address = await signer.getAddress();
         setAccount(address);
         setLoading(false)
-        let marketplaceAddress = "0xfA3d1A6290DeaC3c6241608AE4cB331074f3C463";
+        let marketplaceAddress = "0x9b56752E5e84669CA53670969cFf84795D3f0173";
        
         const marketplacecontract = new Contract(
           marketplaceAddress,
@@ -48,7 +48,7 @@ function App() {
         );
 
        
-        console.log(marketplacecontract);
+        // console.log(marketplacecontract);
         setMarketplace(marketplacecontract);
      
        
@@ -73,7 +73,7 @@ function App() {
         <Route path="/" element={<Home/>}></Route>
         <Route path="/all-nft" element={<NFTs marketplace={marketplace} setNFTitem={setNFTitem} />}></Route>
         <Route path="/create" element={<Create marketplace={marketplace}  />}></Route>
-        <Route path="/info" element={<Info nftitem={nftitem} />}></Route>
+        <Route path="/info" element={<Info nftitem={nftitem} marketplace={marketplace} />}></Route>
       </Routes>
       </div>
     </div>

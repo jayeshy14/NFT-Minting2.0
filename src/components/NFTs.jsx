@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Cards from './Cards'
 import { toast } from 'react-toastify';
+import {ethers} from "ethers";
 
 function NFTs({ marketplace, setNFTitem}) {
   useEffect(()=>{
@@ -11,25 +12,25 @@ function NFTs({ marketplace, setNFTitem}) {
   const [items, setItems] = useState([])
   const loadMarketplaceItems = async () => {
    
-    const itemCount = await marketplace.itemCount()
+    const itemCount = await marketplace.nextTokenId()
     let items = []
-    for (let i = 1; i <= itemCount; i++) {
-      const item = await marketplace.items(i)
+    const getItems = await marketplace.getTokens();
+    for (let i = 0; i < itemCount; i++) {
+      const item = getItems[i];
 
-      if (!item.sold) {
+      if (item.isForSale) {
        
-        const uri = await marketplace.tokenURI(item.tokenId)
+        const uri = await marketplace.tokenURI(i)
+
         
         const response = await fetch(uri)
         const metadata = await response.json()
       
-        const totalPrice = await marketplace.getTotalPrice(item.itemId)
+        const price = ethers.formatEther(item.price);
        
         items.push({
-          totalPrice,
-          itemId: item.itemId,
-          owner: metadata.owner,
-          seller: item.seller,
+          price:price,
+          tokenId: i,
           name: metadata.name,
           description: metadata.description,
           image: metadata.image,
@@ -42,18 +43,18 @@ function NFTs({ marketplace, setNFTitem}) {
     
   }
 
-  const buyMarketItem = async (item) => {
-   const tx = await (await marketplace.viewitem(item.itemId, { value: 0 }))
+  // const buyMarketItem =  (item) => {
+  // //  const tx = await (await marketplace.viewitem(item.itemId, { value: 0 }))
 
-   toast.info("Wait till transaction Confirms....", {
-    position: "top-center"
-  })
+  // //  toast.info("Wait till transaction Confirms....", {
+  // //   position: "top-center"
+  // // })
 
-  await tx.wait();
+  // // await tx.wait();
 
-    setNFTitem(item)
-    item.viewitem =true;
-  }
+  //   setNFTitem(item)
+  //   item.viewitem =true;
+  // }
 
 
 
@@ -72,9 +73,9 @@ function NFTs({ marketplace, setNFTitem}) {
          {
      ( items.length > 0 ?
     
-            items.map((item, idx) => (
+            items.map((item) => (
               
-              <Cards item={item} buyMarketItem={buyMarketItem} marketplace={marketplace} />
+              <Cards key={item.tokenId} item={item} setNFTitem={setNFTitem}  marketplace={marketplace} />
 
              
             ))

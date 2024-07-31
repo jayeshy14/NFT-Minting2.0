@@ -9,8 +9,7 @@ function Create({marketplace}) {
     const [forminfo, setFormInfo] = useState({
       title:"",
       description:"",
-      owner:"",
-      price: 0
+      price:"",
     });
 
     useEffect(()=>{
@@ -69,7 +68,6 @@ function Create({marketplace}) {
               description: forminfo.description,
               image: ImgHash,
               price: forminfo.price,
-              owner:forminfo.owner
           }
   
           async function pinJSONToPinata(info) {
@@ -107,8 +105,8 @@ function Create({marketplace}) {
         position: "top-center"
       })
   
-    const listingPrice = ethers.parseEther(forminfo.price.toString())
-    const tx1=  await(await marketplace.mint(uri, listingPrice))
+    const price = ethers.parseEther(forminfo.price.toString());
+    const tx1=  await(await marketplace.mint(uri, price));
   
     toast.info("Wait till transaction Confirms....", {
       position: "top-center"
@@ -129,30 +127,27 @@ function Create({marketplace}) {
         <div className="container-fluid mt-5 text-left">
           <div className="content mx-auto">
 
-<form class="max-w-sm mx-auto">
+<form className="max-w-sm mx-auto">
 
     <div className='max-w-lg mx-auto'>
-    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="user_avatar">Upload Image</label>
+    <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="user_avatar">Upload Image</label>
   <input onChange={changeHandler} name="file" className="block w-full mb-4 h-8 text-m  text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"  type="file" />
     </div>
 
   
-  <div class="mb-4">
-    <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">SBT Name</label>
-    <input onChange={handleChange} type="text" id="title" name='title' class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Enter SBT name" required />
+  <div className="mb-4">
+    <label htmlFor="title" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">SBT Name</label>
+    <input onChange={handleChange} type="text" id="title" name='title' className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Enter SBT name" required />
   </div>
 
-  <div class="mb-4">
-    <label for="owner" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter Owner <span className='text-sx'>(Optional)</span></label>
-    <input onChange={handleChange} type="text" id="owner" name='owner' class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Enter Owner" />
+  <div className="mb-4">
+    <label htmlFor="price" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter Price</label>
+    <input onChange={handleChange} type="text" id="price" name='price' className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Enter price" />
   </div>
 
-  <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
-  <textarea onChange={handleChange}  name="description" id="description" rows="4" class="block p-2.5 w-full text-sm  mb-4 text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Leave a comment..."></textarea>
-  {/* <div class="mb-4">
-    <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
-    <input onChange={handleChange}  type="number" name='price' id="price" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder='0.001' required />
-  </div> */}
+  <label htmlFor="description" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+  <textarea onChange={handleChange}  name="description" id="description" rows="4" className="block p-2.5 w-full text-sm  mb-4 text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Leave a comment..."></textarea>
+ 
  <div className='text-center'>
 
 
