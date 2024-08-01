@@ -17,9 +17,13 @@ function Nav({account}) {
           <Link className='no-underline text-gray-200' as={Link} to="/">
           <li>Home</li>   </Link>
           <Link className='no-underline text-gray-200' as={Link} to="/all-nft">
-          <li>All NFT</li>   </Link>
+          <li>All NFTs</li>   </Link>
           <Link className='no-underline text-gray-200' as={Link} to="/create">
           <li>Mint NFT</li>   </Link>
+          <Link className= 'no-underline text-gray-200' as = {Link} to = "/my-nfts">
+          <li>My NFTs</li>
+          </Link>
+          
         </ul>
         
         <div className="hidden xl:flex space-x-5 items-center">

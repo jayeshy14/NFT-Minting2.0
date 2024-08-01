@@ -11,10 +11,17 @@ function NFTs({ marketplace, setNFTitem}) {
   const [loading, setLoading] = useState(true)
   const [items, setItems] = useState([])
   const loadMarketplaceItems = async () => {
+    let itemCount, getItems;
    
-    const itemCount = await marketplace.nextTokenId()
+    try{
+        itemCount = await marketplace.nextTokenId();
+        getItems = await marketplace.getTokens();
+    }catch(error){
+      console.log(error);
+    }
+
     let items = []
-    const getItems = await marketplace.getTokens();
+
     for (let i = 0; i < itemCount; i++) {
       const item = getItems[i];
 
@@ -24,17 +31,17 @@ function NFTs({ marketplace, setNFTitem}) {
 
         
         const response = await fetch(uri)
-        const metadata = await response.json()
+        const metadata = await response.json();
       
         const price = ethers.formatEther(item.price);
        
         items.push({
           price:price,
           tokenId: i,
+          isForSale:item.isForSale,
           name: metadata.name,
           description: metadata.description,
           image: metadata.image,
-          viewitem:false,
         })
       }
     }
@@ -42,21 +49,6 @@ function NFTs({ marketplace, setNFTitem}) {
     setItems(items)
     
   }
-
-  // const buyMarketItem =  (item) => {
-  // //  const tx = await (await marketplace.viewitem(item.itemId, { value: 0 }))
-
-  // //  toast.info("Wait till transaction Confirms....", {
-  // //   position: "top-center"
-  // // })
-
-  // // await tx.wait();
-
-  //   setNFTitem(item)
-  //   item.viewitem =true;
-  // }
-
-
 
   useEffect(() => {
     loadMarketplaceItems()

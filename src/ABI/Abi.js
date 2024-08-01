@@ -322,6 +322,46 @@ export const marketplace_abi =[
 	},
 	{
 		"inputs": [],
+		"name": "getMyTokens",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "price",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "isForSale",
+						"type": "bool"
+					},
+					{
+						"internalType": "address payable",
+						"name": "seller",
+						"type": "address"
+					}
+				],
+				"internalType": "struct Marketplace.Sale[]",
+				"name": "",
+				"type": "tuple[]"
+			},
+			{
+				"internalType": "uint256[]",
+				"name": "",
+				"type": "uint256[]"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
 		"name": "getTokens",
 		"outputs": [
 			{

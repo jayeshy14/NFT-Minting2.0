@@ -10,6 +10,7 @@ import { useEffect, useState } from 'react';
 import { ethers, Contract} from 'ethers';
 import 'react-toastify/dist/ReactToastify.css';
 import Info from './components/Info.jsx';
+import MyNFTs from './components/MyNFTs.jsx';
 
 
 function App() {
@@ -39,7 +40,7 @@ function App() {
         const address = await signer.getAddress();
         setAccount(address);
         setLoading(false)
-        let marketplaceAddress = "0x9b56752E5e84669CA53670969cFf84795D3f0173";
+        let marketplaceAddress = "0xe4a8D0CE71f7Cbb49ed56f982b1B9d6A806C884e";
        
         const marketplacecontract = new Contract(
           marketplaceAddress,
@@ -74,6 +75,7 @@ function App() {
         <Route path="/all-nft" element={<NFTs marketplace={marketplace} setNFTitem={setNFTitem} />}></Route>
         <Route path="/create" element={<Create marketplace={marketplace}  />}></Route>
         <Route path="/info" element={<Info nftitem={nftitem} marketplace={marketplace} />}></Route>
+        <Route path = "/my-nfts" element = {<MyNFTs setNFTitem={setNFTitem} marketplace = {marketplace}/>}></Route>
       </Routes>
       </div>
     </div>
