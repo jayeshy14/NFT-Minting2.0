@@ -22,7 +22,6 @@ Make sure you have the following installed on your machine:
    ```sh
    git clone https://github.com/jayeshy14/NFT-Minting2.0.git
    cd NFT-Staking
-   cd client
 
 2. **Install the Dependencies
     ```sh
@@ -32,6 +31,3 @@ Make sure you have the following installed on your machine:
 
    ```sh
    npm start 
-
-
-
