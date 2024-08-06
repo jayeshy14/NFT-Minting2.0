@@ -53,7 +53,7 @@ const MyNFTs = ({setNFTitem, marketplace}) => {
             {
             (myNFTs.length > 0 ?
     
-            myNFTs.map((item) => (
+            myNFTs.map((item, idx) => (
               
                 <div className='card-div'>
                 <div className='card-inner p-2'>

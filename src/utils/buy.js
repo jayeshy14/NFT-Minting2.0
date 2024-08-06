@@ -6,7 +6,8 @@ const buy = async(marketplace, tokenId, price) => {
             const priceInWei = ethers.parseEther(price);
             console.log(price);
             console.log(tokenId);
-         transaction = await marketplace.purchaseToken(tokenId, {value: priceInWei, gas:4000000});
+         transaction = await (await marketplace.purchaseToken(tokenId, {value: priceInWei, gas:4000000}));
+        transaction.wait();
          console.log(transaction);
         }
         catch(error){
