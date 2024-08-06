@@ -8,8 +8,6 @@ const buy = async(marketplace, tokenId, price) => {
             console.log(tokenId);
          transaction = await marketplace.purchaseToken(tokenId, {value: priceInWei, gas:4000000});
          console.log(transaction);
-          if(transaction)alert('transaction successfull!');
-          return transaction;
         }
         catch(error){
             console.error(error);

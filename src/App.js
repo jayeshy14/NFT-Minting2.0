@@ -11,7 +11,7 @@ import { ethers, Contract} from 'ethers';
 import 'react-toastify/dist/ReactToastify.css';
 import Info from './components/Info.jsx';
 import MyNFTs from './components/MyNFTs.jsx';
-
+import {Web3} from 'web3'
 
 function App() {
 
@@ -24,6 +24,7 @@ function App() {
 
   useEffect(() => {
     const provider = new ethers.BrowserProvider(window.ethereum);
+    
 
     const loadProvider = async () => {
       if (provider) {
@@ -34,21 +35,21 @@ function App() {
         window.ethereum.on("accountsChanged", () => {
           window.location.reload();
         });
-        
+        const web3Instance = new Web3(window.ethereum);
         await provider.send("eth_requestAccounts", []);
         const signer = await provider.getSigner();
         const address = await signer.getAddress();
         setAccount(address);
         setLoading(false)
-        let marketplaceAddress = "0xe4a8D0CE71f7Cbb49ed56f982b1B9d6A806C884e";
+        let marketplaceAddress = "0xb64525bCa7367163Aa1C03A5a388faeec3fD694f";
+        console.log(signer);
        
         const marketplacecontract = new Contract(
           marketplaceAddress,
           marketplace_abi,
           signer
         );
-
-       
+        
         // console.log(marketplacecontract);
         setMarketplace(marketplacecontract);
      
@@ -87,6 +88,6 @@ function App() {
 export default App;
 
 
-//kiichain: 0x482035207606Dccd3C12074869B86152d4867f93
-//arbitrum-sepolia: 0x6ACabcaAa096Df132c2aF5F06D9008C1C49Ea7cA
+//kiichain: 0xA6998e6cfdd2659bc32a1ff03743F6672034CF8A
+//arbitrum-sepolia: 0xe4a8D0CE71f7Cbb49ed56f982b1B9d6A806C884e
 //sepolia: 0xfA3d1A6290DeaC3c6241608AE4cB331074f3C463

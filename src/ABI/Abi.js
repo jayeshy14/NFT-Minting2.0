@@ -1,4 +1,4 @@
-export const marketplace_abi =[
+export const marketplace_abi =   [
 	{
 		"inputs": [],
 		"stateMutability": "nonpayable",

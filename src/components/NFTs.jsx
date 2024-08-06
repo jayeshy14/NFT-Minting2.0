@@ -7,29 +7,25 @@ function NFTs({ marketplace, setNFTitem}) {
   useEffect(()=>{
     document.title = "NFT Museum ETH"
 }, []);
-
   const [loading, setLoading] = useState(true)
   const [items, setItems] = useState([])
   const loadMarketplaceItems = async () => {
     let itemCount, getItems;
-   
+
     try{
         itemCount = await marketplace.nextTokenId();
         getItems = await marketplace.getTokens();
     }catch(error){
       console.log(error);
     }
-
     let items = []
 
     for (let i = 0; i < itemCount; i++) {
       const item = getItems[i];
-
       if (item.isForSale) {
-       
+       console.log(1);
         const uri = await marketplace.tokenURI(i)
-
-        
+        console.log(2);        
         const response = await fetch(uri)
         const metadata = await response.json();
       

@@ -5,11 +5,12 @@ const MyNFTs = ({setNFTitem, marketplace}) => {
     const [myNFTs, setMyNFTs] = useState([]);
     const [loading, setLoading] = useState(true);
     useEffect(()=>{
-        let getItems, getItemIds, getItemsCount;
+        let [getItems, getItemIds, getItemsCount] =[];
         const LoadItems = async() => {
             let items = [];
             try{
                  [getItems, getItemIds, getItemsCount] = await marketplace.getMyTokens();
+                 console.log(getItemIds);
                 setMyNFTs(items);
             }catch(error){
                 console.error(error);
