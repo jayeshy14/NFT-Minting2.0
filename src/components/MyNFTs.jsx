@@ -40,7 +40,7 @@ const MyNFTs = ({setNFTitem, marketplace}) => {
 
 
 
-    })
+    }, [])
 
     if (loading) return (
         <main style={{ padding: "1rem 0" }}>
