@@ -32,7 +32,7 @@ function Info({nftitem, marketplace}) {
         <div className='card-inner card-info p-5'>
           <div className='text-2xl'>
           <h1 className='text-white font-semibold text-3xl'>Name: {nftitem.name}</h1>
-          <h1 className='text-white font-semibold text-3xl'>Price: {nftitem.price} ETH</h1>
+          <h1 className='text-white font-semibold text-3xl'>Price: {nftitem.price} KII</h1>
           </div>
            
            <div className='border border-zinc-700 mt-2 mb-4'></div>

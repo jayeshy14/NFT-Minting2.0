@@ -9,7 +9,7 @@ function Cards({item, setNFTitem}) {
         <img src={item.image} alt="" className='object-cover w-[230px] h-[230px] rounded overflow-hidden'/>
         <div className='flex flex-col justify-center items-center'>
         <h3 className='text-white text-2xl font-thin mt-3'>Name: {item.name}</h3>
-        <h3 className='text-white text-2xl font-thin mt-3'>Price: {item.price} ETH</h3>
+        <h3 className='text-white text-2xl font-thin mt-3'>Price: {item.price} KII</h3>
         <div className='flex text-white justify-between items-center mb-3 gap-4 mt-3'>
             <Link as={Link} to="/info">
             <button type="button"  onClick={()=>setNFTitem(item)}
