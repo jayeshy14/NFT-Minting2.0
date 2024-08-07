@@ -1,9 +1,6 @@
 import React from 'react'
-import Flower from "../assets/Flower.png"
-import Ethereum from "../assets/Ethereum.svg"
 import { Link } from 'react-router-dom'
 import { ethers } from 'ethers'
-import buy from '../utils/buy'
 import { toast } from 'react-toastify'
 
 function Info({nftitem, marketplace}) {

@@ -1,8 +1,4 @@
 import React from 'react'
-import Fluid from "../assets/Fluid.png"
-import Flower from "../assets/Flower.png"
-import Ethereum from "../assets/Ethereum.svg"
-import { ethers } from 'ethers'
 import { Link } from 'react-router-dom'
 import '../App.css';
 function Cards({item, setNFTitem}) {

@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import Cards from './Cards'
-import { toast } from 'react-toastify';
 import {ethers} from "ethers";
 
 function NFTs({ marketplace, setNFTitem}) {
   useEffect(()=>{
     document.title = "NFT Museum ETH"
-}, []);
+});
   const [loading, setLoading] = useState(true)
   const [items, setItems] = useState([])
   const loadMarketplaceItems = async () => {
@@ -48,7 +47,7 @@ function NFTs({ marketplace, setNFTitem}) {
 
   useEffect(() => {
     loadMarketplaceItems()
-  },[] )
+  } )
 
   if (loading) return (
     <main style={{ padding: "1rem 0" }}>
